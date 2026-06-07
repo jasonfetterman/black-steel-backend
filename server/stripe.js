@@ -4,6 +4,8 @@ const fs = require("fs");
 
 require("dotenv").config();
 
+const { getProduct } = require("./products");
+
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error("Missing STRIPE_SECRET_KEY in .env file");
 }
@@ -16,7 +18,6 @@ function loadDB() {
   if (!fs.existsSync(DB_PATH)) {
     fs.writeFileSync(DB_PATH, JSON.stringify({ users: {} }, null, 2));
   }
-
   return JSON.parse(fs.readFileSync(DB_PATH));
 }
 
@@ -24,16 +25,22 @@ function getUser(db, userId) {
   if (!db.users[userId]) {
     db.users[userId] = {
       owned: [],
-      licenses: []
+      services: [],
+      parts: []
     };
   }
-
   return db.users[userId];
 }
 
-async function createCheckoutSession(droneId, userId) {
-  if (!droneId || !userId) {
+async function createCheckoutSession(productId, userId) {
+  if (!productId || !userId) {
     throw new Error("Missing data");
+  }
+
+  const product = getProduct(productId);
+
+  if (!product) {
+    throw new Error("Invalid product");
   }
 
   const db = loadDB();
@@ -41,7 +48,6 @@ async function createCheckoutSession(droneId, userId) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
-
     payment_method_types: ["card"],
 
     line_items: [
@@ -49,9 +55,9 @@ async function createCheckoutSession(droneId, userId) {
         price_data: {
           currency: "usd",
           product_data: {
-            name: `Black Steel Unit: ${droneId}`
+            name: `${product.type.toUpperCase()}: ${product.name}`
           },
-          unit_amount: 5000
+          unit_amount: product.price
         },
         quantity: 1
       }
@@ -59,7 +65,8 @@ async function createCheckoutSession(droneId, userId) {
 
     metadata: {
       userId,
-      droneId
+      productId,
+      type: product.type
     },
 
     success_url: "https://black-steel-backend.onrender.com/",

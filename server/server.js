@@ -7,52 +7,41 @@ const { handleWebhook } = require("./webhook");
 
 const app = express();
 
-/* IMPORTANT: RAW WEBHOOK FIRST */
+/* Stripe webhook MUST be raw */
 app.post(
   "/api/webhook",
   express.raw({ type: "application/json" }),
   handleWebhook
 );
 
-/* ENABLE JSON BODY PARSING FOR EVERYTHING ELSE */
+/* normal middleware */
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-/* HEALTH CHECK */
+/* health check */
 app.get("/", (req, res) => {
   res.send("BLACK STEEL BACKEND LIVE");
 });
 
-/* DEBUG (TEMP) */
-app.post("/api/debug", (req, res) => {
-  res.json({
-    body: req.body,
-    received: true
-  });
-});
-
-/* CREATE CHECKOUT */
+/* checkout route */
 app.post("/api/create-checkout", async (req, res) => {
   try {
     console.log("BODY:", req.body);
 
-    const { droneId, userId } = req.body || {};
-
-    if (!droneId || !userId) {
-      return res.status(400).json({
-        error: "Missing droneId or userId"
-      });
-    }
-
-    const session = await createCheckoutSession(droneId, userId);
+    const session = await createCheckoutSession(
+      req.body.productId,
+      req.body.userId
+    );
 
     return res.json({
       url: session.url
     });
+
   } catch (err) {
     console.error("CHECKOUT ERROR:", err);
+
     return res.status(500).json({
-      error: "Checkout failed"
+      error: err.message
     });
   }
 });
