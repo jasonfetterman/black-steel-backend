@@ -1,0 +1,328 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Technology | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+.nav a:hover {
+    color:#4fd1ff;
+    opacity:1;
+}
+
+/* PAGE */
+.page {
+    padding:40px;
+}
+
+h1 {
+    margin:0 0 10px 0;
+    font-size:26px;
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 8px rgba(79,209,255,0.45),
+        0 0 20px rgba(79,209,255,0.20);
+}
+
+.subtitle {
+    font-size:13px;
+    opacity:0.7;
+    margin-bottom:25px;
+    max-width:900px;
+    line-height:1.5;
+}
+
+/* GRID */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:15px;
+}
+
+/* TECH CARDS */
+.tech-card {
+    background:#0f151c;
+    border:1px solid rgba(79,209,255,0.55);
+    border-radius:12px;
+
+    padding:16px;
+
+    box-shadow:
+        0 0 6px rgba(79,209,255,0.85),
+        0 0 18px rgba(79,209,255,0.55),
+        0 0 45px rgba(79,209,255,0.25),
+        0 0 90px rgba(79,209,255,0.12);
+
+    transition:0.2s ease;
+}
+
+.tech-card:hover {
+    border-color:#bff6ff;
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 10px rgba(79,209,255,1),
+        0 0 30px rgba(79,209,255,0.85),
+        0 0 70px rgba(79,209,255,0.45),
+        0 0 140px rgba(79,209,255,0.20);
+}
+
+.tech-card h2 {
+    margin:0;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.tech-card p {
+    font-size:12px;
+    opacity:0.75;
+    margin-top:6px;
+    line-height:1.5;
+}
+
+/* SECTION BLOCKS */
+.section {
+    margin-top:12px;
+    padding:10px;
+    border:1px solid #1f2a35;
+    background:#0b0f14;
+}
+
+.section h3 {
+    margin:0;
+    font-size:11px;
+    letter-spacing:1px;
+    opacity:0.8;
+}
+
+.section ul {
+    margin:8px 0 0 18px;
+    font-size:12px;
+    opacity:0.75;
+    line-height:1.5;
+}
+
+/* STATUS */
+.status {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.dot {
+    width:7px;
+    height:7px;
+    border-radius:50%;
+}
+
+.online { background:#2cff88; }
+.offline { background:#ff4f4f; }
+.maintenance { background:#ffd24f; }
+.degraded { background:#ff9f2c; }
+
+/* FEATURE */
+.feature {
+    margin-top:30px;
+    padding:16px;
+    background:#0f151c;
+    border:1px solid #1f2a35;
+}
+
+.feature h2 {
+    margin:0 0 8px 0;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.feature p {
+    font-size:12px;
+    opacity:0.75;
+    line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="technology.html">TECH</a>
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="contracts.html">CONTRACTS</a>
+        <a href="compliance.html">COMPLIANCE</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="portal.html">PORTAL</a>
+    </div>
+</div>
+
+<div class="page">
+
+<h1>TECHNOLOGY STACK</h1>
+
+<div class="subtitle">
+Integrated multi-domain systems architecture built around autonomous coordination, encrypted communications, sensor fusion, and distributed command execution across air, sea, ground, and experimental platforms.
+</div>
+
+<div class="grid">
+
+    <div class="tech-card">
+        <h2>Autonomous Control Kernel</h2>
+        <p>Core decision engine responsible for real-time navigation, behavioral logic, and mission execution autonomy across all deployed assets.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>Adaptive route generation</li>
+                <li>Autonomous stabilization logic</li>
+                <li>Mission rule execution engine</li>
+                <li>Fail-safe behavioral fallback states</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot online"></span> OPERATIONAL</div>
+    </div>
+
+    <div class="tech-card">
+        <h2>Sensor Fusion Network</h2>
+        <p>Multi-source environmental awareness layer combining optical, motion, and spatial data into unified operational intelligence streams.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>Multi-spectrum visual tracking</li>
+                <li>Environmental condition mapping</li>
+                <li>Object detection correlation</li>
+                <li>Real-time data fusion processing</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot online"></span> OPERATIONAL</div>
+    </div>
+
+    <div class="tech-card">
+        <h2>Secure Mesh Communications Layer</h2>
+        <p>Distributed encrypted networking system enabling resilient communication across all fleet units under degraded or contested conditions.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>Encrypted telemetry routing</li>
+                <li>Dynamic mesh reconfiguration</li>
+                <li>Multi-node relay architecture</li>
+                <li>Signal redundancy failover paths</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot online"></span> OPERATIONAL</div>
+    </div>
+
+    <div class="tech-card">
+        <h2>Navigation & Spatial Alignment Core</h2>
+        <p>Precision positioning system combining GNSS, inertial correction, and predictive drift compensation for coordinated multi-platform movement.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>GNSS + IMU hybrid tracking</li>
+                <li>Drift correction algorithms</li>
+                <li>Formation alignment control</li>
+                <li>Multi-unit spatial synchronization</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot online"></span> OPERATIONAL</div>
+    </div>
+
+    <div class="tech-card">
+        <h2>Command & Orchestration Layer</h2>
+        <p>Centralized and distributed mission control system managing task allocation, fleet coordination, and real-time operational oversight.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>Fleet-wide mission synchronization</li>
+                <li>Dynamic task assignment engine</li>
+                <li>Live operational monitoring grid</li>
+                <li>Emergency override protocols</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot online"></span> OPERATIONAL</div>
+    </div>
+
+    <div class="tech-card">
+        <h2>Extended Relay Infrastructure</h2>
+        <p>Adaptive communication extension system enabling persistent coverage through airborne and distributed relay nodes in remote environments.</p>
+        <div class="section">
+            <h3>System Functions</h3>
+            <ul>
+                <li>Airborne relay deployment (BEACON nodes)</li>
+                <li>Extended range mesh bridging</li>
+                <li>Remote area signal persistence</li>
+                <li>Dynamic relay chain formation</li>
+            </ul>
+        </div>
+        <div class="status"><span class="dot maintenance"></span> DEPLOYING</div>
+    </div>
+
+</div>
+
+<div class="feature">
+    <h2>System Architecture Overview</h2>
+    <p>
+        The Black Steel Innovations technology stack operates as a modular distributed architecture where autonomous systems,
+        sensor fusion networks, and encrypted communications layers function as interdependent subsystems. Each module is
+        capable of independent operation while remaining synchronized through a centralized orchestration framework designed
+        for multi-domain coordination and scalable deployment across dynamic operational environments.
+    </p>
+</div>
+
+</div>
+
+</body>
+</html>

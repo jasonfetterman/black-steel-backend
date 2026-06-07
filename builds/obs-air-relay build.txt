@@ -1,0 +1,137 @@
+🧾 OBS-AIR-RELAY — ADMIN BUILD SHEET (FULL)
+ROLE
+
+Aerial communications relay drone for extending range, stabilizing mesh networks, and linking field units to OBS-COM-NEXUS.
+
+Primary purpose:
+
+Extend drone-to-command communication range
+Act as airborne mesh network node
+Bridge SAR / LIDAR / ground units
+Maintain signal in blocked terrain (urban / forest / disaster zones)
+🧱 AIRFRAME
+Frame Type
+Long-endurance medium-lift quad or hex (550–650mm)
+Recommended Frames (REALISTIC)
+Tarot 680 Pro Carbon Fiber Frame → ~$200–$300
+Holybro X650 V4 Frame Kit → ~$250–$350
+Custom hybrid:
+Carbon fiber tube arms (20–25mm OD)
+6061-T6 CNC center plate
+Materials
+Carbon fiber tubes (DragonPlate / Rock West Composites)
+~$25–$50 per arm
+Aluminum center plates (4mm)
+~$80–$150 CNC
+3D printed mounts (PA12 / PA-CF)
+⚙️ PROPULSION SYSTEM
+Motors (efficiency-focused, not heavy lift)
+T-Motor MN4010 475KV → ~$90–$130 each
+OR
+KDE 3510XF-400KV → ~$110–$150 each
+Qty: 4 or 6 depending configuration
+ESC
+Hobbywing XRotor 50A–60A → ~$40–$70 each
+Propellers
+13–15 inch low-noise efficiency props
+HQProp / T-Motor carbon
+~$60–$120 set
+🔋 POWER SYSTEM
+Battery
+Tattu 6S 16000–22000mAh → ~$250–$400
+OR endurance:
+Li-Ion Molicel P42A pack → ~$250–$350
+Goal
+maximize flight time over payload capacity
+🧠 FLIGHT CONTROL
+Flight Controller
+Cube Orange+ (ArduPilot preferred) → ~$250–$320
+GPS
+Here3+ GNSS → ~$120–$180
+Telemetry
+SiK Radio 915MHz → ~$40–$80
+📡 COMMUNICATION SYSTEM (CORE FUNCTION)
+Primary Relay Hardware
+1. Mesh Radio Node
+Silvus / Doodle Labs (professional) → $800–$2,500
+OR budget:
+ESP32 mesh / LoRa nodes → ~$10–$80 per node
+2. Long Range Telemetry
+RFD900x / SiK High Power → ~$120–$250
+3. LTE Backup Link
+SIM7600 module → ~$80–$150
+📶 RELAY FUNCTION DESIGN
+
+Relay modes:
+
+Line-of-sight extension
+Mesh node hopping
+Emergency comm bridge
+Command uplink fallback layer
+📷 OPTIONAL SENSOR PACKAGE
+
+(Not required but common in deployments)
+
+Small FPV camera:
+Runcam Nano / DJI O3 → $100–$250
+Wide angle navigation cam
+
+Purpose:
+
+situational awareness only
+not primary mission focus
+🔊 LIGHT PAYLOAD SUPPORT
+
+Relay drones may carry:
+
+small beacon strobes (Firehouse ARC V) → ~$40–$80
+GPS tracking beacon module → ~$20–$60
+🧠 COMPUTE (OPTIONAL)
+Raspberry Pi 5 → ~$80–$120
+NVIDIA Jetson Orin Nano (advanced relay AI routing) → ~$400–$600
+
+Use cases:
+
+dynamic routing decisions
+signal strength optimization
+autonomous positioning for best relay coverage
+⚙️ PERFORMANCE
+Flight Time
+Standard: 45–70 minutes
+Optimized Li-Ion: up to 90 minutes (light payload)
+Range Impact
+Extends comms 2–10x depending terrain
+Operating Conditions
+Wind tolerant (light–moderate)
+Optimized for station-keeping flight (hover stability)
+💰 COST BREAKDOWN
+Base Build
+Frame: $250
+Motors: $400
+ESC: $200
+FC + GPS: $350
+Battery: $300
+👉 $1,300 – $1,800
+Operational Relay System
+Comms radios: $200–$800
+LTE backup: $100
+Navigation + redundancy: $150
+👉 $1,800 – $3,000
+Advanced Network Relay
+Mesh radios (Silvus/Doodle): $2,000–$5,000
+AI routing compute: $500
+👉 $4,000 – $8,000+
+🎯 DESIGN GOAL
+
+OBS-AIR-RELAY must:
+
+stay airborne long durations
+maintain stable hover over terrain gaps
+prioritize signal reliability over speed
+act as backbone node for entire OBSIDIAN-8 system
+
+NOT:
+
+payload delivery
+high-speed maneuvering
+heavy sensing load

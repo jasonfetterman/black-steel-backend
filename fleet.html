@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fleet | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+    background:#0b0f14;
+    overflow-x:hidden;
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background-image:
+        linear-gradient(rgba(180, 80, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 80, 255, 0.12) 1px, transparent 1px);
+
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    background:#070b10;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.nav {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+/* HERO */
+.hero {
+    padding:60px 40px 20px;
+    text-align:center;
+}
+
+.hero-title {
+    font-size:28px;
+    letter-spacing:4px;
+}
+
+.hero-sub {
+    margin-top:10px;
+    font-size:12px;
+    opacity:0.6;
+    color:#4fd1ff;
+}
+
+/* GRID */
+.section {
+    padding:10px 40px 30px;
+}
+
+.section-title {
+    text-align:center;
+    font-size:12px;
+    opacity:0.7;
+    margin:20px 0 12px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, 180px);
+    gap:18px;
+    justify-content:center;
+}
+
+/* BASE CARD */
+.card {
+    height:90px;
+    padding:8px;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:#0f151c;
+    border:1px solid rgba(79,209,255,0.75);
+
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+.card:hover {
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* TYPE COLORS */
+.meta.air { color:#3aa0ff; }
+.meta.sea { color:#00c2a8; }
+.meta.ground { color:#a0a0a0; }
+.meta.command { color:#c77dff; }
+.meta.experimental { color:#ff5c5c; }
+
+/* =========================
+   RARITY GLOW SYSTEM
+========================= */
+
+.card.tier-basic {
+    box-shadow:
+        0 0 4px rgba(120,120,120,0.5),
+        0 0 12px rgba(120,120,120,0.3);
+    border-color: rgba(160,160,160,0.6);
+}
+
+.card.tier-operational {
+    box-shadow:
+        0 0 6px rgba(79,209,255,0.7),
+        0 0 18px rgba(79,209,255,0.4),
+        0 0 40px rgba(79,209,255,0.2);
+}
+
+.card.tier-specialized {
+    box-shadow:
+        0 0 8px rgba(255,165,0,0.7),
+        0 0 25px rgba(255,165,0,0.4),
+        0 0 60px rgba(255,165,0,0.25);
+}
+
+.card.tier-advanced {
+    box-shadow:
+        0 0 10px rgba(140,90,255,0.8),
+        0 0 30px rgba(140,90,255,0.5),
+        0 0 80px rgba(140,90,255,0.3),
+        0 0 140px rgba(140,90,255,0.15);
+}
+
+.card.tier-command {
+    box-shadow:
+        0 0 12px rgba(255,60,200,0.9),
+        0 0 40px rgba(255,60,200,0.6),
+        0 0 100px rgba(255,60,200,0.35),
+        0 0 180px rgba(255,60,200,0.2);
+}
+
+.card.tier-experimental {
+    box-shadow:
+        0 0 14px rgba(255,60,60,0.95),
+        0 0 50px rgba(255,60,60,0.8),
+        0 0 120px rgba(255,60,60,0.5),
+        0 0 220px rgba(255,60,60,0.3);
+
+    animation: experimentalPulse 2.2s infinite alternate ease-in-out;
+}
+
+@keyframes experimentalPulse {
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.03); filter: brightness(1.4); }
+}
+
+/* TEXT */
+.status { font-size:10px; opacity:0.8; }
+.id { font-size:12px; font-weight:bold; }
+
+/* =========================
+   SCAN SWEEP OVERLAY
+========================= */
+
+#scanline {
+    position:fixed;
+    top:0;
+    left:-60%;
+    width:60%;
+    height:100%;
+    pointer-events:none;
+    z-index:999;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(79,209,255,0.05) 20%,
+        rgba(79,209,255,0.25) 50%,
+        rgba(79,209,255,0.05) 80%,
+        transparent 100%
+    );
+
+    transform: skewX(-20deg);
+    filter: blur(2px);
+    opacity:0;
+}
+
+@keyframes scanSweep {
+    0% { left:-60%; opacity:0; }
+    10% { opacity:1; }
+    100% { left:120%; opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="technology.html">TECH</a>
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="contracts.html">CONTRACTS</a>
+        <a href="compliance.html">COMPLIANCE</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="portal.html">PORTAL</a>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-title">FLEET SYSTEMS</div>
+    <div class="hero-sub">Operational unit registry</div>
+</div>
+
+<div id="container"></div>
+
+<div id="scanline"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp({
+    apiKey:"AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+    authDomain:"black-steel-6a724.firebaseapp.com",
+    projectId:"black-steel-6a724"
+});
+
+const db = getFirestore(app);
+const container = document.getElementById("container");
+
+function normalizeType(t){
+    t = (t || "unknown").toLowerCase();
+    if(t === "grd") return "ground";
+    if(t === "com") return "command";
+    if(t === "ex") return "experimental";
+    return t;
+}
+
+function card(id, data){
+
+    const div = document.createElement("div");
+
+    const type = normalizeType(data.type);
+    const status = (data.status || "offline").toLowerCase();
+    const tier = (data.tier || "basic").toLowerCase();
+
+    div.className = `card tier-${tier}`;
+
+    div.onclick = () => {
+        window.location.href = "unit.html?id=" + id;
+    };
+
+    div.innerHTML = `
+        <div class="id">${data.name || id}</div>
+        <div class="meta ${type}">Type: ${type}</div>
+        <div class="status">${status}</div>
+    `;
+
+    return div;
+}
+
+function section(title, items){
+    const wrap = document.createElement("div");
+    wrap.className = "section";
+
+    const h = document.createElement("div");
+    h.className = "section-title";
+    h.textContent = title;
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    items.forEach(i => grid.appendChild(i));
+
+    wrap.appendChild(h);
+    wrap.appendChild(grid);
+
+    return wrap;
+}
+
+async function load(){
+
+    const snap = await getDocs(collection(db,"fleetUnits"));
+
+    const groups = {
+        air: [],
+        sea: [],
+        ground: [],
+        command: [],
+        experimental: []
+    };
+
+    snap.forEach(d => {
+        const data = d.data();
+        const type = normalizeType(data.type);
+
+        const c = card(d.id, data);
+
+        if(groups[type]) groups[type].push(c);
+    });
+
+    container.innerHTML = "";
+
+    container.appendChild(section("AIR SYSTEMS", groups.air));
+    container.appendChild(section("SEA SYSTEMS", groups.sea));
+    container.appendChild(section("GROUND SYSTEMS", groups.ground));
+    container.appendChild(section("COMMAND SYSTEMS", groups.command));
+    container.appendChild(section("EXPERIMENTAL SYSTEMS", groups.experimental));
+}
+
+load();
+
+/* SCAN LOOP */
+const scan = document.getElementById("scanline");
+
+function triggerScan(){
+    scan.style.animation = "none";
+    void scan.offsetWidth;
+    scan.style.animation = "scanSweep 2.2s linear";
+}
+
+setInterval(triggerScan, 6000);
+setTimeout(triggerScan, 1200);
+
+</script>
+
+</body>
+</html>

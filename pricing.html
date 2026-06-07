@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pricing | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+/* PRICING */
+.container {
+    padding:60px 40px;
+    max-width:1100px;
+    margin:auto;
+    text-align:center;
+}
+
+h1 {
+    letter-spacing:2px;
+}
+
+.sub {
+    opacity:0.7;
+    font-size:13px;
+    margin-bottom:30px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:18px;
+}
+
+.card {
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    padding:20px;
+}
+
+.card h2 {
+    margin:0;
+    font-size:16px;
+}
+
+.price {
+    font-size:22px;
+    margin:10px 0;
+    color:#4fd1ff;
+}
+
+ul {
+    text-align:left;
+    font-size:12px;
+    opacity:0.8;
+    line-height:1.7;
+    padding-left:18px;
+}
+
+button {
+    margin-top:15px;
+    width:100%;
+    padding:10px;
+    border:none;
+    cursor:pointer;
+    background:#4fd1ff;
+    color:#000;
+    font-weight:bold;
+}
+
+button:hover {
+    opacity:0.85;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="pricing.html">PRICING</a>
+        <a href="contracts.html">CONTRACTS</a>
+    </div>
+</div>
+
+<div class="container">
+
+<h1>PRICING PLANS</h1>
+<div class="sub">Select a service tier to unlock system access</div>
+
+<div class="grid">
+
+    <div class="card">
+        <h2>BASIC</h2>
+        <div class="price">$49 / mo</div>
+        <ul>
+            <li>Dashboard Access</li>
+            <li>View Fleet Systems</li>
+            <li>Basic Support</li>
+        </ul>
+        <button onclick="window.location.href='signup.html?plan=basic'">
+            GET STARTED
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>PRO</h2>
+        <div class="price">$199 / mo</div>
+        <ul>
+            <li>Fleet Requests</li>
+            <li>Unit Rentals</li>
+            <li>Data Export</li>
+            <li>Priority Support</li>
+        </ul>
+        <button onclick="window.location.href='signup.html?plan=pro'">
+            GET STARTED
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>ENTERPRISE</h2>
+        <div class="price">$799 / mo</div>
+        <ul>
+            <li>Full Fleet Control</li>
+            <li>API Access</li>
+            <li>Custom Deployments</li>
+            <li>Dedicated Ops Channel</li>
+        </ul>
+        <button onclick="window.location.href='signup.html?plan=enterprise'">
+            GET STARTED
+        </button>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>

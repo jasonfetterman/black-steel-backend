@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Black Steel Innovations | Home</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    overflow-x:hidden;
+}
+
+/* GLOBAL BACKGROUND ENERGY */
+body::after {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(79,209,255,0.05), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(199,125,255,0.04), transparent 40%);
+    animation: drift 12s infinite alternate ease-in-out;
+}
+
+@keyframes drift {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-10px); }
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+.nav a:hover {
+    color:#4fd1ff;
+    opacity:1;
+}
+
+/* HERO */
+.hero {
+    padding:80px 40px 20px 40px;
+    max-width:1000px;
+    margin:0 auto;
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.hero h1 {
+    margin:0;
+    font-size:34px;
+    letter-spacing:2px;
+    animation: pulseText 3s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+    0% { text-shadow: 0 0 0 rgba(79,209,255,0); }
+    50% { text-shadow: 0 0 20px rgba(79,209,255,0.25); }
+    100% { text-shadow: 0 0 0 rgba(79,209,255,0); }
+}
+
+.hero p {
+    opacity:0.75;
+    margin-top:10px;
+    line-height:1.6;
+    max-width:800px;
+}
+
+/* INFO STRIP */
+.info {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:12px;
+    padding:0 40px 20px 40px;
+}
+
+.box {
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    padding:14px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.box h3 {
+    margin:0;
+    font-size:11px;
+    opacity:0.7;
+    letter-spacing:1px;
+}
+
+.box p {
+    margin:6px 0 0 0;
+    font-size:13px;
+    color:#4fd1ff;
+}
+
+/* SCAN BAR ON BOXES */
+.box::after {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:2px;
+    left:-100%;
+    top:0;
+    background:rgba(79,209,255,0.4);
+    animation: scanbar 4s infinite linear;
+}
+
+@keyframes scanbar {
+    0% { left:-100%; }
+    100% { left:100%; }
+}
+
+/* GRID */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:15px;
+    padding:40px;
+}
+
+/* CARDS */
+.card {
+    background:rgba(15,21,28,0.85);
+    border:1px solid rgba(79,209,255,0.25);
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.25s;
+    position:relative;
+}
+
+.card:hover {
+    border-color:#4fd1ff;
+    transform:translateY(-3px);
+}
+
+/* SWEEP EFFECT */
+.card::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg, transparent, rgba(79,209,255,0.08), transparent);
+    transform:translateX(-100%);
+}
+
+.card:hover::before {
+    animation:sweep 1.2s ease;
+}
+
+@keyframes sweep {
+    from { transform:translateX(-100%); }
+    to { transform:translateX(100%); }
+}
+
+.card img {
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content {
+    padding:14px;
+    text-align:center;
+}
+
+.card h2 {
+    margin:0;
+    font-size:15px;
+}
+
+.card p {
+    font-size:12px;
+    opacity:0.75;
+    margin-top:6px;
+    line-height:1.5;
+}
+
+/* FOOT NOTE */
+.note {
+    padding:0 40px 60px 40px;
+    font-size:11px;
+    opacity:0.55;
+    line-height:1.5;
+    max-width:900px;
+    text-align:center;
+    margin:0 auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="technology.html">TECH</a>
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="contracts.html">CONTRACTS</a>
+        <a href="compliance.html">COMPLIANCE</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="portal.html">PORTAL</a>
+        <a href="merch.html">MERCH</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>BLACK STEEL INNOVATIONS</h1>
+    <p>
+        Modular operational systems for surveillance support, field coordination, infrastructure monitoring,
+        and autonomous data collection workflows. Built for commercial, industrial, and regulated deployments.
+    </p>
+</div>
+
+<!-- INFO -->
+<div class="info">
+
+    <div class="box">
+        <h3>CORE SERVICES</h3>
+        <p>Surveillance • Coordination • Deployment Support</p>
+    </div>
+
+    <div class="box">
+        <h3>DEPLOYMENT TYPE</h3>
+        <p>Commercial / Industrial / Private Contracts</p>
+    </div>
+
+    <div class="box">
+        <h3>SYSTEM STATUS</h3>
+        <p>Active Development & Client Deployment</p>
+    </div>
+
+    <div class="box">
+        <h3>SUPPORT MODEL</h3>
+        <p>On-demand & Contract-based Service Agreements</p>
+    </div>
+
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+    <div class="card" onclick="location.href='fleet.html'">
+        <img src="images/5e1473443_generated_image.png">
+        <div class="card-content">
+            <h2>FLEET SYSTEMS</h2>
+            <p>Operational asset tracking and coordinated deployment management across environments.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='technology.html'">
+        <img src="images/a7b313df3_generated_image.png">
+        <div class="card-content">
+            <h2>TECHNOLOGY</h2>
+            <p>AI-assisted systems, sensor integration, secure communications infrastructure.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='services.html'">
+        <img src="images/0e00aa9d0_generated_image.png">
+        <div class="card-content">
+            <h2>SERVICES</h2>
+            <p>Monitoring, coordination, response support, and system integration services.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='dashboard.html'">
+        <img src="images/ffc20a422_generated_image.png">
+        <div class="card-content">
+            <h2>CLIENT DASHBOARD</h2>
+            <p>Secure access portal for service activity, requests, and system status tracking.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- NOTE -->
+<div class="note">
+All systems represent operational service capabilities and deployment architecture intended for client engagement and support workflows.
+No fictional mission data or simulated operational metrics are displayed.
+</div>
+
+</body>
+</html>

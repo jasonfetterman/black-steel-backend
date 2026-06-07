@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Payment | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+/* MAIN */
+.container {
+    max-width:700px;
+    margin:60px auto;
+    padding:30px;
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    text-align:center;
+}
+
+h1 {
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+.sub {
+    font-size:12px;
+    opacity:0.7;
+    margin-bottom:20px;
+}
+
+.planBox {
+    font-size:14px;
+    color:#4fd1ff;
+    margin-bottom:20px;
+}
+
+.priceBox {
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+/* BUTTON */
+button {
+    padding:14px 20px;
+    width:100%;
+    background:#4fd1ff;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    color:#000;
+}
+
+button:hover {
+    opacity:0.85;
+}
+
+.note {
+    margin-top:20px;
+    font-size:11px;
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="pricing.html">PRICING</a>
+        <a href="dashboard.html">DASHBOARD</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>SECURE PAYMENT GATEWAY</h1>
+    <div class="sub">Complete subscription activation</div>
+
+    <div class="planBox" id="plan">Loading...</div>
+    <div class="priceBox" id="price">$0.00</div>
+
+    <button onclick="pay()">PROCEED TO PAYMENT</button>
+
+    <div class="note">
+        You will be redirected to a secure Stripe checkout session.
+        No payment data is stored on this site.
+    </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp({
+    apiKey:"AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+    authDomain:"black-steel-6a724.firebaseapp.com",
+    projectId:"black-steel-6a724"
+});
+
+const db = getFirestore(app);
+
+// PLAN DATA
+const plans = {
+    basic: 4900,
+    pro: 14900,
+    elite: 39900,
+    superelite: 99900
+};
+
+const url = new URLSearchParams(window.location.search);
+const plan = (url.get("plan") || "basic").toLowerCase();
+
+document.getElementById("plan").innerText = "Selected Plan: " + plan.toUpperCase();
+document.getElementById("price").innerText = "$" + (plans[plan] / 100).toFixed(2);
+
+window.pay = async function() {
+
+    // 🔴 STRIPE PLACEHOLDER
+    // Replace this with real Stripe Checkout session URL from backend
+
+    const checkoutLinks = {
+        basic: "https://buy.stripe.com/test_basic",
+        pro: "https://buy.stripe.com/test_pro",
+        elite: "https://buy.stripe.com/test_elite",
+        superelite: "https://buy.stripe.com/test_superelite"
+    };
+
+    // redirect to Stripe
+    window.location.href = checkoutLinks[plan] || checkoutLinks.basic;
+}
+
+</script>
+
+</body>
+</html>

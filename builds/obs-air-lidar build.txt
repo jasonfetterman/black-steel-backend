@@ -1,0 +1,132 @@
+🧾 OBS-AIR-LIDAR — ADMIN BUILD SHEET (FULL)
+ROLE
+
+Terrain mapping + 3D reconstruction + survey intelligence UAV.
+
+Primary purpose:
+
+High-precision terrain scanning
+3D mapping (construction, disaster zones, land analysis)
+Topographic data collection
+Infrastructure modeling
+Path planning support for OBS-GRD units
+🧱 AIRFRAME
+Frame Type
+Stable mid-heavy quad or hex (650–750mm class preferred for smooth LiDAR data)
+Recommended Frames (REALISTIC)
+Tarot X6 / 680 Pro Hex Frame → ~$250–$400
+Holybro X650 / X700 frame kit → ~$300–$450
+Custom rigid carbon + aluminum hybrid frame (preferred for vibration reduction)
+Structural Materials
+Carbon fiber tubes (20–25mm OD) → ~$25–$50 each
+6061-T6 aluminum center plates (4–6mm CNC) → ~$100–$200
+Anti-vibration dampening mounts (Sorbothane / TPU isolators)
+⚙️ PROPULSION SYSTEM
+Motors (smooth + stable flight priority)
+T-Motor MN4014 400KV → ~$100–$140 each
+OR
+KDE 3515XF-400KV → ~$120–$160 each
+Qty: 4–6 depending frame
+ESC
+Hobbywing XRotor 60A–80A → ~$50–$90 each
+Propellers
+15–17 inch low-vibration carbon props
+HQProp / T-Motor carbon series
+~$80–$150 set
+🔋 POWER SYSTEM
+Battery
+Tattu 6S 16000–22000mAh LiPo → ~$250–$400
+OR
+High-end Li-Ion (Molicel P42A pack custom) → ~$250–$450
+Power Priority
+stable voltage delivery (critical for LiDAR accuracy)
+🧠 FLIGHT CONTROL
+Flight Controller
+Cube Orange+ (ArduPilot strongly recommended) → ~$250–$320
+GPS
+Here3+ GNSS or RTK upgrade (Here4 RTK) → ~$180–$400
+Telemetry
+SiK Radio 915MHz or RFD900x (better for data-heavy missions)
+~$80–$250
+📡 CORE SENSOR SYSTEM — LIDAR PAYLOAD
+Primary LiDAR Options
+Professional Grade (recommended)
+Velodyne Puck LITE (VLP-16) → ~$3,000–$4,500
+Ouster OS0 / OS1 LiDAR → ~$3,500–$6,000
+Mid-range option
+Livox Mid-360 → ~$600–$900
+Livox Avia → ~$1,200–$1,800
+📷 SUPPORT SENSORS
+RGB Mapping Camera
+Sony Alpha (lightweight mapping setup) → ~$500–$1,200
+OR
+DJI X7 / P1 (enterprise mapping) → ~$2,000–$6,000
+IMU Sync Module (important for accuracy)
+RTK + timestamp sync board → ~$200–$500
+🧠 COMPUTE SYSTEM (DATA PROCESSING)
+Onboard Processing
+NVIDIA Jetson Orin Nano → ~$400–$600
+OR
+Jetson Xavier NX (higher throughput) → ~$600–$900
+
+Use cases:
+
+point cloud preprocessing
+SLAM (Simultaneous Localization and Mapping)
+terrain reconstruction preview
+📊 SOFTWARE STACK (REALISTIC INDUSTRY STANDARD)
+ArduPilot / PX4 (flight control)
+ROS2 (robot operating system)
+Open3D (point cloud processing)
+CloudCompare (post-processing)
+Pix4D / DroneDeploy (commercial mapping export)
+📶 COMMUNICATION SYSTEM
+RFD900x long-range telemetry → ~$120–$250
+LTE backup (SIM7600) → ~$80–$150
+Optional mesh integration with OBS-AIR-RELAY
+⚙️ PERFORMANCE
+Flight Time
+Standard LiPo build: 25–40 minutes
+Li-Ion endurance build: 40–60 minutes (lighter payload)
+Mapping Coverage
+1 flight: 1–5 km² depending altitude & sensor
+Accuracy
+With RTK: centimeter-level precision possible
+💰 COST BREAKDOWN
+Base Build
+Frame: $300
+Motors: $500–$700
+ESC: $250
+FC + GPS: $400
+Battery: $300
+👉 $1,800 – $2,500
+LiDAR Mapping System
+LiDAR sensor: $600 – $6,000
+Camera system: $500 – $2,000
+Compute: $400 – $800
+👉 $3,500 – $10,000+ total system
+🎯 DESIGN GOAL
+
+OBS-AIR-LIDAR is built for:
+
+precision flight stability
+vibration-free sensor data
+high-resolution terrain mapping
+survey-grade outputs
+
+NOT:
+
+speed
+payload delivery
+maneuver aggression
+🧠 KEY SUCCESS FACTOR
+
+If OBS-AIR-SAR is “search,”
+then OBS-AIR-LIDAR is “truth layer of the terrain.”
+
+It creates:
+
+digital elevation models (DEM)
+3D terrain meshes
+structural maps
+pre-mission planning data for all other units

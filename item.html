@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Product</title>
+
+<style>
+body{
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+img{
+    max-width:400px;
+    width:100%;
+    border-radius:12px;
+}
+
+button{
+    margin-top:10px;
+    padding:10px 14px;
+    background:#4fd1ff;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.85;
+}
+
+.sizes{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.size{
+    padding:6px 10px;
+    border:1px solid #3a424c;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.size.active{
+    border-color:#4fd1ff;
+    color:#4fd1ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div id="app">Loading...</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+  authDomain: "black-steel-6a724.firebaseapp.com",
+  projectId: "black-steel-6a724"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const id = new URLSearchParams(location.search).get("id");
+const appDiv = document.getElementById("app");
+
+let selectedSize = "M";
+
+async function load(){
+    const snap = await getDoc(doc(db,"products",id));
+
+    if(!snap.exists()){
+        appDiv.innerHTML = "<h1>Product not found</h1>";
+        return;
+    }
+
+    const d = snap.data();
+
+    const sizes = (d.sizes || []).map(s =>
+        `<div class="size" onclick="selectSize('${s}')">${s}</div>`
+    ).join("");
+
+    appDiv.innerHTML = `
+        <h1>${d.name}</h1>
+
+        <img src="${d.image}">
+
+        <p>${d.verse || ""}</p>
+
+        <h2>$${d.price}</h2>
+
+        <div class="sizes">${sizes}</div>
+
+        <button onclick="addToCart()">Add to Cart</button>
+    `;
+
+    window.selectSize = function(size){
+        selectedSize = size;
+
+        document.querySelectorAll(".size").forEach(el=>{
+            el.classList.remove("active");
+            if(el.innerText === size) el.classList.add("active");
+        });
+    }
+
+    window.addToCart = function(){
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        cart.push({
+            id: id,
+            size: selectedSize
+        });
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert("Added to cart");
+    }
+}
+
+load();
+</script>
+
+</body>
+</html>

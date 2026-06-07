@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dashboard | Black Steel</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0f14;
+  color:#e6e6e6;
+}
+
+.header {
+  padding:20px;
+  border-bottom:1px solid #1f2a35;
+}
+
+.section {
+  padding:20px;
+}
+
+.box {
+  padding:15px;
+  margin:10px 0;
+  border:1px solid #1f2a35;
+  background:#0f151c;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h2>Dashboard</h2>
+  <div>Plan: <span id="plan">loading...</span></div>
+</div>
+
+<div class="section">
+  <div id="fleetAccess" class="box">🚁 Fleet Access Enabled</div>
+  <div id="analytics" class="box">📊 Analytics Module Unlocked</div>
+  <div id="support" class="box">🎧 Priority Support Active</div>
+</div>
+
+<script src="dashboard.js"></script>
+
+<script>
+/* AUTO AUTH GUARD */
+const token = localStorage.getItem("token");
+
+if (!token) {
+  window.location.href = "login.html";
+}
+
+/* LOAD DATA */
+async function loadDashboard() {
+  try {
+    const res = await fetch("http://localhost:3000/api/features", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+
+    document.getElementById("plan").innerText = data.plan || "free";
+
+    const features = data.features || {};
+
+    document.getElementById("fleetAccess").style.display =
+      features.fleetAccess ? "block" : "none";
+
+    document.getElementById("analytics").style.display =
+      features.analytics ? "block" : "none";
+
+    document.getElementById("support").style.display =
+      features.prioritySupport ? "block" : "none";
+
+  } catch (err) {
+    console.error("Dashboard load failed:", err);
+  }
+}
+
+loadDashboard();
+</script>
+
+</body>
+</html>

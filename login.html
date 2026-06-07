@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login | Black Steel</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b0f14;
+  color:#e6e6e6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box {
+  background:#0f151c;
+  border:1px solid #1f2a35;
+  padding:25px;
+  width:300px;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  background:#0b0f14;
+  border:1px solid #1f2a35;
+  color:#fff;
+}
+
+button {
+  width:100%;
+  margin-top:15px;
+  padding:10px;
+  background:#4fd1ff;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h3>Login</h3>
+
+  <input id="userId" placeholder="Enter User ID" />
+
+  <button onclick="login()">Login</button>
+</div>
+
+<script>
+async function login() {
+  const userId = document.getElementById("userId").value;
+
+  if (!userId) {
+    alert("Enter userId");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userId })
+    });
+
+    const data = await res.json();
+
+    if (!data.token) {
+      alert("Login failed");
+      return;
+    }
+
+    localStorage.setItem("token", data.token);
+
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    console.error(err);
+    alert("Login error");
+  }
+}
+</script>
+
+</body>
+</html>

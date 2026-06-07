@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Unit Profile | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:40px 40px;
+}
+
+/* HEADER (LOCKED) */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+.nav a:hover {
+    color:#4fd1ff;
+    opacity:1;
+}
+
+/* PAGE */
+.page {
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap:18px;
+    padding:20px;
+}
+
+/* LEFT */
+.hero {
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    padding:18px;
+}
+
+.hero h1 {
+    margin:0;
+    font-size:28px;
+    letter-spacing:2px;
+}
+
+.subtitle {
+    font-size:12px;
+    opacity:0.7;
+    margin-top:6px;
+}
+
+/* IMAGE */
+.image-slot {
+    margin-top:14px;
+    height:320px;
+    border:1px dashed #2a3a4a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6b7c8c;
+    font-size:12px;
+}
+
+/* DESC */
+.desc {
+    margin-top:14px;
+    font-size:13px;
+    line-height:1.6;
+    opacity:0.9;
+}
+
+/* STATS */
+.stats {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:16px;
+}
+
+.stat {
+    background:#0b0f14;
+    border:1px solid #1f2a35;
+    padding:10px;
+    text-align:center;
+    font-size:11px;
+}
+
+.stat b {
+    display:block;
+    margin-top:4px;
+    font-size:14px;
+    color:#4fd1ff;
+}
+
+/* RIGHT */
+.panel {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.block {
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    padding:14px;
+}
+
+.block h3 {
+    margin:0 0 8px 0;
+    font-size:11px;
+    letter-spacing:2px;
+    opacity:0.8;
+}
+
+ul {
+    margin:0;
+    padding-left:18px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.small {
+    font-size:11px;
+    opacity:0.7;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="technology.html">TECH</a>
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="contracts.html">CONTRACTS</a>
+        <a href="compliance.html">COMPLIANCE</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="portal.html">PORTAL</a>
+        <a href="merch.html">MERCH</a>
+    </div>
+</div>
+
+<div class="page" id="page">
+    Loading unit data...
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp({
+    apiKey:"AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+    authDomain:"black-steel-6a724.firebaseapp.com",
+    projectId:"black-steel-6a724"
+});
+
+const db = getFirestore(app);
+
+function getId(){
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+}
+
+function stat(label, value){
+    return `<div class="stat">${label}<b>${value || "-"}</b></div>`;
+}
+
+function list(arr){
+    if(!arr || !arr.length) return "<li>None</li>";
+    return arr.map(x => `<li>${x}</li>`).join("");
+}
+
+async function load(){
+    const id = getId();
+    const container = document.getElementById("page");
+
+    if(!id){
+        container.innerHTML = "No unit ID provided.";
+        return;
+    }
+
+    const ref = doc(db, "fleetUnits", id);
+    const snap = await getDoc(ref);
+
+    if(!snap.exists()){
+        container.innerHTML = "Unit not found.";
+        return;
+    }
+
+    const d = snap.data();
+
+    container.innerHTML = `
+        <div class="hero">
+            <h1>${d.name || id}</h1>
+            <div class="subtitle">${d.role || "UNKNOWN ROLE"}</div>
+
+            <div class="image-slot">
+                IMAGE PLACEHOLDER — ${d.name}
+            </div>
+
+            <div class="desc">
+                ${d.description || ""}
+            </div>
+
+            <div class="stats">
+                ${stat("PRICE", "$" + (d.purchase_price || 0))}
+                ${stat("RENT / HR", "$" + (d.rental_price_hour || 0))}
+                ${stat("ENDURANCE", d.endurance)}
+            </div>
+
+            <div class="stats">
+                ${stat("RANGE", d.range)}
+                ${stat("PAYLOAD", d.payload)}
+                ${stat("STATUS", d.status)}
+            </div>
+        </div>
+
+        <div class="panel">
+
+            <div class="block">
+                <h3>CAPABILITIES</h3>
+                <ul>${list(d.capabilities)}</ul>
+            </div>
+
+            <div class="block">
+                <h3>MODULES</h3>
+                <ul>${list(d.modules)}</ul>
+            </div>
+
+            <div class="block">
+                <h3>NAVIGATION SYSTEM</h3>
+                <div class="small">${d.navigation || "Standard GPS"}</div>
+            </div>
+
+            <div class="block">
+                <h3>ROI MODEL</h3>
+                <div class="small">
+                    Estimated ROI: ${d.roi_hours || "-"} hours<br>
+                    Annual Revenue Estimate: $${d.annual_revenue_est || "-"}
+                </div>
+            </div>
+
+        </div>
+    `;
+}
+
+load();
+</script>
+
+</body>
+</html>

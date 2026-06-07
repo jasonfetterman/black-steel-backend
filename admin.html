@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Admin Panel</title>
+
+<style>
+body { margin:0; background:#0b0f14; color:#e6e6e6; font-family:Arial; }
+
+.header {
+  padding:18px;
+  background:#070b10;
+  border-bottom:1px solid #1f2a35;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.user {
+  margin:10px;
+  padding:10px;
+  background:#0f151c;
+  border:1px solid #1f2a35;
+  border-radius:6px;
+}
+
+select, button {
+  margin-top:6px;
+  padding:6px;
+  background:#0b0f14;
+  border:1px solid #4fd1ff;
+  color:#4fd1ff;
+  cursor:pointer;
+}
+
+button:hover {
+  background:#111a22;
+}
+
+.unit-btn {
+  margin:10px;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">ADMIN PANEL</div>
+
+<!-- OBSIDIAN-8 UNIT ACCESS -->
+<div class="unit-btn">
+  <button onclick="location.href='admin/units/index.html'">
+    OPEN OBSIDIAN-8 UNIT LIBRARY
+  </button>
+</div>
+
+<div id="list"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+  authDomain: "black-steel-6a724.firebaseapp.com",
+  projectId: "black-steel-6a724"
+});
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const list = document.getElementById("list");
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    location.href = "portal.html";
+    return;
+  }
+
+  const snap = await getDocs(collection(db, "users"));
+  list.innerHTML = "";
+
+  snap.forEach(d => {
+    const u = d.data();
+
+    const div = document.createElement("div");
+    div.className = "user";
+
+    div.innerHTML = `
+      <div><b>${u.email}</b></div>
+      <div>role: ${u.role}</div>
+
+      <select id="r-${d.id}">
+        <option value="client" ${u.role === "client" ? "selected" : ""}>client</option>
+        <option value="staff" ${u.role === "staff" ? "selected" : ""}>staff</option>
+        <option value="admin" ${u.role === "admin" ? "selected" : ""}>admin</option>
+      </select>
+
+      <button onclick="updateRole('${d.id}')">UPDATE ROLE</button>
+    `;
+
+    list.appendChild(div);
+  });
+});
+
+window.updateRole = async (id) => {
+  const val = document.getElementById("r-" + id).value;
+  await updateDoc(doc(db, "users", id), { role: val });
+  alert("Updated");
+};
+</script>
+
+</body>
+</html>

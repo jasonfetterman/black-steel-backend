@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Services | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+.nav a:hover {
+    color:#4fd1ff;
+    opacity:1;
+}
+
+/* HERO */
+.hero {
+    padding:80px 40px 10px 40px;
+    max-width:900px;
+}
+
+.hero h1 {
+    margin:0;
+    font-size:32px;
+    letter-spacing:2px;
+
+    text-shadow:
+        0 0 8px rgba(79,209,255,0.45),
+        0 0 20px rgba(79,209,255,0.20);
+}
+
+.hero p {
+    opacity:0.7;
+    margin-top:10px;
+    line-height:1.5;
+    font-size:13px;
+}
+
+/* GRID */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:15px;
+    padding:40px;
+}
+
+/* =========================
+   SERVICE CARDS (NEON UPGRADED)
+========================= */
+
+.card {
+    background:#0f151c;
+    border:1px solid rgba(79,209,255,0.55);
+    border-radius:12px;
+    padding:16px;
+
+    transition:0.2s ease;
+
+    box-shadow:
+        0 0 6px rgba(79,209,255,0.85),
+        0 0 18px rgba(79,209,255,0.55),
+        0 0 45px rgba(79,209,255,0.25),
+        0 0 90px rgba(79,209,255,0.12);
+}
+
+.card:hover {
+    border-color:#bff6ff;
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 10px rgba(79,209,255,1),
+        0 0 30px rgba(79,209,255,0.85),
+        0 0 70px rgba(79,209,255,0.45),
+        0 0 140px rgba(79,209,255,0.20);
+}
+
+.card.clickable {
+    cursor:pointer;
+}
+
+/* TEXT */
+.card h2 {
+    margin:0;
+    font-size:15px;
+    letter-spacing:1px;
+}
+
+.card p {
+    font-size:12px;
+    opacity:0.75;
+    margin-top:6px;
+    line-height:1.5;
+}
+
+/* DETAILS BLOCK (UPGRADED) */
+.details {
+    margin-top:10px;
+    padding:10px;
+
+    border:1px solid #1f2a35;
+    background:#0b0f14;
+
+    font-size:11px;
+    opacity:0.85;
+    line-height:1.6;
+}
+
+/* TAGS */
+.tag {
+    display:inline-block;
+    margin-top:10px;
+
+    font-size:10px;
+    padding:4px 8px;
+
+    border:1px solid rgba(79,209,255,0.35);
+    border-radius:6px;
+
+    opacity:0.85;
+    letter-spacing:1px;
+}
+
+/* TAG COLORS BY TYPE */
+.tag.core { color:#4fd1ff; }
+.tag.deployment { color:#4dff88; }
+.tag.infra { color:#c77dff; }
+.tag.intel { color:#ff5c5c; }
+.tag.ai { color:#ff9f2c; }
+.tag.data { color:#a0a0ff; }
+.tag.secure { color:#4da6ff; }
+.tag.analytics { color:#ffd24f; }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="services.html">SERVICES</a>
+        <a href="technology.html">TECH</a>
+        <a href="dashboard.html">DASHBOARD</a>
+        <a href="contracts.html">CONTRACTS</a>
+        <a href="compliance.html">COMPLIANCE</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+        <a href="portal.html">PORTAL</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>SERVICES</h1>
+    <p>
+        Modular operational service layer providing mission execution, surveillance, intelligence processing,
+        communications infrastructure, and autonomous deployment systems across all Black Steel platforms.
+    </p>
+</div>
+
+<div class="grid">
+
+    <div class="card clickable" onclick="location.href='surveillance-operations.html'">
+        <h2>Surveillance Operations</h2>
+        <p>Persistent multi-domain intelligence and tracking system.</p>
+
+        <div class="details">
+            Continuous sensor fusion across air, land, and maritime domains.
+            Real-time anomaly detection and encrypted telemetry streaming for
+            sustained situational awareness.
+        </div>
+
+        <div class="tag core">CORE SYSTEM</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='response-deployment.html'">
+        <h2>Response Deployment</h2>
+        <p>Automated rapid mission execution and asset dispatch system.</p>
+
+        <div class="details">
+            AI-assisted deployment routing, multi-unit coordination,
+            mission execution tracking, and operator override capability
+            for dynamic field conditions.
+        </div>
+
+        <div class="tag deployment">DEPLOYMENT</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='fleet-integration.html'">
+        <h2>Fleet Integration</h2>
+        <p>Unified command layer connecting all operational assets.</p>
+
+        <div class="details">
+            Cross-platform synchronization between air, sea, and ground units.
+            Centralized telemetry fusion and system-wide operational cohesion.
+        </div>
+
+        <div class="tag infra">INFRASTRUCTURE</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='signal-intelligence-layer.html'">
+        <h2>Signal Intelligence Layer</h2>
+        <p>Electromagnetic detection and spectrum analysis system.</p>
+
+        <div class="details">
+            RF scanning, interference mapping, signal classification,
+            and directional source tracking for environmental awareness.
+        </div>
+
+        <div class="tag intel">INTELLIGENCE</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='autonomous-navigation-systems.html'">
+        <h2>Autonomous Navigation Systems</h2>
+        <p>AI-driven pathfinding and adaptive movement logic.</p>
+
+        <div class="details">
+            Dynamic routing, obstacle avoidance, swarm coordination,
+            and predictive movement optimization for autonomous fleets.
+        </div>
+
+        <div class="tag ai">AI SYSTEM</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='environmental-mapping.html'">
+        <h2>Environmental Mapping</h2>
+        <p>Real-time geospatial reconstruction system.</p>
+
+        <div class="details">
+            3D terrain modeling, thermal overlays, environmental tracking,
+            and geospatial intelligence fusion for operational planning.
+        </div>
+
+        <div class="tag data">DATA SYSTEM</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='secure-communications-network.html'">
+        <h2>Secure Communications Network</h2>
+        <p>Encrypted multi-layer communication infrastructure.</p>
+
+        <div class="details">
+            Mesh encryption, redundant routing, secure command transmission,
+            and anti-interference resilience across distributed nodes.
+        </div>
+
+        <div class="tag secure">SECURE</div>
+    </div>
+
+    <div class="card clickable" onclick="location.href='mission-analytics-engine.html'">
+        <h2>Mission Analytics Engine</h2>
+        <p>Operational performance analysis and optimization system.</p>
+
+        <div class="details">
+            Post-mission evaluation, predictive failure modeling,
+            efficiency scoring, and system improvement feedback loops.
+        </div>
+
+        <div class="tag analytics">ANALYTICS</div>
+    </div>
+
+</div>
+
+</body>
+</html>

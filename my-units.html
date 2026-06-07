@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>My Units | Black Steel</title>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b0f14;
+    color:#e6e6e6;
+}
+
+.header {
+    padding:18px 40px;
+    background:#070b10;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:15px;
+    padding:40px;
+}
+
+.card {
+    background:#0f151c;
+    border:1px solid #1f2a35;
+    padding:16px;
+}
+
+h2 {
+    margin:0;
+    font-size:16px;
+}
+
+.small {
+    font-size:12px;
+    opacity:0.7;
+    margin-top:6px;
+}
+
+.license {
+    margin-top:10px;
+    font-size:11px;
+    color:#4fd1ff;
+    word-break:break-all;
+}
+
+button {
+    margin:20px 40px 0;
+    padding:10px 14px;
+    background:#4fd1ff;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>MY UNITS</div>
+    <div><a href="index.html" style="color:#4fd1ff;text-decoration:none;">HOME</a></div>
+</div>
+
+<button onclick="load()">🔄 Refresh Now</button>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const userId = "test123"; // TEMP AUTH
+
+async function load() {
+    try {
+        const res = await fetch("http://localhost:3000/api/admin/users");
+        const data = await res.json();
+
+        const user = data[userId];
+
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        if (!user) {
+            grid.innerHTML = "<p>No purchases found.</p>";
+            return;
+        }
+
+        (user.owned || []).forEach(unit => {
+            const licenses = (user.licenses || []).filter(l => l.droneId === unit || l.planId === unit);
+
+            const div = document.createElement("div");
+            div.className = "card";
+
+            div.innerHTML = `
+                <h2>${unit.toUpperCase()}</h2>
+                <div class="small">Active Ownership</div>
+                ${licenses.map(l => `<div class="license">${l.license}</div>`).join("")}
+            `;
+
+            grid.appendChild(div);
+        });
+
+    } catch (err) {
+        console.error("LOAD ERROR:", err);
+    }
+}
+
+/* AUTO REFRESH LOOP (REAL-TIME SYNC) */
+setInterval(load, 5000);
+
+load();
+</script>
+
+</body>
+</html>

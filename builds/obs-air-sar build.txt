@@ -1,0 +1,140 @@
+🧾 OBS-AIR-SAR — ADMIN BUILD SHEET (FULL)
+ROLE
+
+Search & Rescue UAV (thermal + visual + payload drop + comm relay)
+
+Primary purpose:
+
+Locate humans in disaster / wilderness environments
+Provide real-time thermal + zoom identification
+Deliver emergency payloads (radio, water, GPS beacon)
+Act as forward relay node for OBS-COM-NEXUS
+🧱 AIRFRAME
+Frame Type
+Heavy-lift X-Quad (650–700mm class)
+Recommended Frames (REALISTIC)
+Tarot 650 Sport Carbon Fiber Frame — ~$180–$250
+Holybro X500 / X650 kit — ~$200–$300
+Custom hybrid:
+6061-T6 aluminum center plate (4–5mm CNC)
+Carbon fiber tube arms (25mm OD)
+Materials
+Carbon fiber tubes (DragonPlate or similar)
+25mm OD, 1.5–2mm wall → ~$25–$40 each
+6061-T6 aluminum plates → ~$80–$150 CNC cut
+3D printed mounts (PA12 / PA-CF)
+Bambu PAHT-CF / Polymaker PA6-CF
+⚙️ PROPULSION SYSTEM
+Motors (heavy lift)
+T-Motor MN501-S 360KV → ~$120–$160 each
+OR
+KDE 4014XF-380KV → ~$140–$180 each
+Qty: 4
+ESC
+Hobbywing XRotor Pro 80A HV ESC → ~$70–$90 each
+Propellers
+15–17 inch carbon fiber props
+T-Motor / APC / HQProp
+~$80–$150 set
+🔋 POWER SYSTEM
+Battery
+Tattu 6S 22000–25000mAh LiPo → ~$300–$450
+OR endurance:
+Molicel P42A Li-Ion custom pack → ~$250–$400
+Power Distribution
+Matek PDB / Holybro power module → ~$30–$80
+🧠 FLIGHT CONTROL
+Flight Controller
+Cube Orange+ (ArduPilot recommended) → ~$250–$320
+GPS
+Here4 GNSS (RTK optional upgrade) → ~$180–$250
+Telemetry
+SiK Radio 915MHz → ~$40–$80
+📡 SENSOR PAYLOAD (CORE SYSTEM)
+Thermal Camera (critical)
+FLIR Boson 320 (baseline) → ~$1,500–$2,500
+FLIR Boson 640 (pro) → ~$4,000–$6,000
+Visual Camera
+Sony FCB-EV7520 / EV9500 block camera → ~$500–$1,200
+OR budget:
+DJI O3 / Runcam Link → ~$150–$250
+Gimbal
+Gremsy T3 / Pixy F → ~$800–$1,500
+📦 SEARCH & RESCUE PAYLOAD SYSTEM
+Drop Mechanism
+Servo-actuated latch system (metal + CF reinforced)
+Servo: MG996R or DS3218 → ~$10–$25
+Payload release frame (3D printed PA-CF)
+
+Cost total: ~$40–$120
+
+Payload types
+First aid kit (compact)
+Emergency radio (BaoFeng UV-5R → ~$25–$50)
+GPS beacon (Garmin/InReach mini-style module)
+Water pouch (250–500ml lightweight drop)
+🔊 AUDIO SYSTEM
+Speaker system
+20–50W marine speaker (Pyle / JL Audio compact) → ~$50–$150
+Amplifier
+Class D amplifier board → ~$15–$40
+
+Use cases:
+
+“Rescue team incoming” audio
+Victim instruction commands
+Area warning broadcasts
+💡 LIGHTING SYSTEM
+FoxFury D3060 LED light → ~$200–$400
+High-intensity strobe (Firehouse ARC V) → ~$40–$80
+🧠 OPTIONAL COMPUTE (AI UPGRADE)
+NVIDIA Jetson Orin Nano → ~$400–$600
+
+Capabilities:
+
+Human detection (YOLOv8 / TensorRT)
+Thermal overlay tracking
+Autonomous scanning grid flight patterns
+📶 COMMUNICATION SYSTEM
+915MHz telemetry (primary control)
+LTE module (SIM7600) → ~$80–$150 optional
+Mesh relay integration with OBS-AIR-RELAY
+⚙️ PERFORMANCE
+Flight Time
+No payload: 40–55 minutes
+Standard SAR payload: 25–40 minutes
+Heavy thermal + compute: 20–30 minutes
+Range
+3–10 miles depending on comms system
+Operating Conditions
+Wind: moderate tolerance (15–25 mph)
+Weather: light rain only (sealed electronics recommended)
+💰 COST BREAKDOWN
+Base Build
+Frame: $200
+Motors: $500–$700
+ESC: $300
+FC + GPS: $350
+Battery: $350
+👉 $1,600 – $2,200
+Full SAR System
+Thermal: $1,500–$6,000
+Gimbal + camera: $800–$1,500
+AI compute: $500
+Payload system: $100–$300
+👉 $4,500 – $10,000+
+🎯 DESIGN GOAL (IMPORTANT)
+
+OBS-AIR-SAR is optimized for:
+
+long hover endurance
+thermal-first detection
+stable gimbal tracking
+lightweight emergency payload delivery
+integration into command network (OBS-COM-NEXUS)
+
+NOT:
+
+speed racing
+heavy cargo transport
+aggressive maneuvering

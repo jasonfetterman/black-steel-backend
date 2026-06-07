@@ -1,0 +1,127 @@
+🧾 OBS-AIR-LINK — ADMIN BUILD SHEET (FULL)
+1. ROLE / MISSION
+PRIMARY ROLE
+
+Short-range aerial communication bridge node for local unit linking and field network stabilization.
+
+FUNCTION
+
+OBS-AIR-LINK is designed to:
+
+Bridge communication between drones and ground teams
+Extend local signal coverage in obstructed environments
+Act as a temporary airborne router
+Support SAR, AEGIS, and GRD units in real-time coordination
+Maintain low-latency field comms in urban or forest environments
+SYSTEM POSITION
+Tactical “micro relay layer”
+Closer-range than OBS-AIR-RELAY
+Used in fast-moving operations
+2. AIRFRAME
+FRAME CLASS
+Lightweight endurance quad (450–550mm)
+REAL FRAME OPTIONS
+TBS Source One V5 (450mm) → $50–$80
+iFlight Chimera 5”/6” frame → $120–$200
+Holybro S500 frame kit → $100–$180
+MATERIALS
+Carbon fiber plates (2–3mm)
+Nylon reinforced arms or carbon tubes
+TPU vibration dampeners
+3. PROPULSION SYSTEM
+MOTORS
+EMAX ECO II 2306 (fast, efficient) → $15–$25 each
+OR
+T-Motor F40 / MN series (premium) → $25–$50 each
+Qty: 4
+ESC
+35A–45A BLHeli_32 ESC → $25–$50 each
+PROPS
+5–7 inch high-efficiency props
+HQProp / Gemfan carbon nylon blend
+$10–$30 per set
+4. POWER SYSTEM
+BATTERY
+4S / 6S LiPo 4000–10000mAh → $80–$180
+OR
+Li-Ion compact pack → $100–$200
+DESIGN GOAL
+balanced flight time + speed
+5. FLIGHT CONTROL
+CONTROLLER
+Pixhawk 6C → $180–$250
+OR Cube Orange+ (optional upgrade)
+GPS
+Here2 / Here3 GNSS → $80–$180
+TELEMETRY
+SiK 915MHz radio → $40–$80
+6. COMMUNICATION SYSTEM (CORE FUNCTION)
+PRIMARY RELAY MODULES
+LOW-COST MESH OPTION
+ESP32 LoRa mesh nodes → $10–$50 each
+915MHz LoRa radios (RFM95) → $10–$30 each
+PROFESSIONAL OPTION
+RFD900x long range modem → $120–$250
+FUNCTION
+local packet relay
+node-to-node communication bridge
+supports swarm coordination
+7. SENSOR PAYLOAD (MINIMAL)
+CAMERA
+Runcam Nano / DJI O3 Air Unit → $100–$250
+OPTIONAL TRACKING SENSOR
+Optical flow sensor (PX4Flow) → $50–$100
+8. COMPUTE SYSTEM
+LIGHT EDGE PROCESSING
+Raspberry Pi 5 → $80–$120
+OR
+Jetson Nano (low power AI tasks) → $100–$150
+USE CASES
+routing logic
+signal optimization
+basic node coordination
+9. SOFTWARE STACK
+ArduPilot (recommended)
+MAVLink communication protocol
+Mesh networking firmware (LoRa / ESP-NOW / custom)
+Optional ROS2 bridge (advanced deployments)
+10. PERFORMANCE
+FLIGHT TIME
+25–45 minutes (LiPo)
+40–60 minutes (Li-Ion lightweight build)
+RANGE ROLE
+extends comms 1–5 km per node hop
+multiplies coverage when chained with RELAY system
+ENVIRONMENT
+optimized for fast deployment
+moderate wind tolerance
+11. COST BREAKDOWN
+BASE BUILD
+Frame: $80
+Motors: $80–$120
+ESC: $100
+FC + GPS: $200
+Battery: $120
+👉 $600 – $900
+OPERATIONAL SYSTEM
+Comms mesh: $50–$250
+Camera: $100–$250
+Accessories: $50
+👉 $900 – $1,400
+ADVANCED NETWORK NODE
+Long-range radio upgrade: $250
+Compute module: $100–$600
+👉 $1,500 – $2,500
+12. DESIGN GOAL (CRITICAL)
+
+OBS-AIR-LINK must:
+
+deploy quickly
+maintain stable low-latency communication links
+act as local field bridge node
+support swarm coordination efficiency
+NOT DESIGNED FOR:
+heavy payloads
+mapping
+thermal operations
+long endurance surveillance

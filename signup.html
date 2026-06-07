@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Signup | Black Steel Innovations</title>
+
+<style>
+body {
+    margin:0;
+    background:#0b0f14;
+    color:#e6e6e6;
+    font-family:Arial, sans-serif;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+}
+
+/* HEADER */
+.header {
+    padding:18px 40px;
+    border-bottom:1px solid #1f2a35;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#070b10;
+    position:sticky;
+    top:0;
+}
+
+.title {
+    font-size:13px;
+    letter-spacing:2px;
+    font-weight:bold;
+}
+
+.nav {
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.nav a {
+    color:#e6e6e6;
+    text-decoration:none;
+    font-size:11px;
+    opacity:0.75;
+}
+
+/* FORM */
+.container {
+    max-width:500px;
+    margin:60px auto;
+    padding:30px;
+    background:#0f151c;
+    border:1px solid #1f2a35;
+}
+
+h1 {
+    font-size:18px;
+    letter-spacing:2px;
+    text-align:center;
+}
+
+.sub {
+    text-align:center;
+    font-size:12px;
+    opacity:0.7;
+    margin-bottom:20px;
+}
+
+input {
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    background:#0b0f14;
+    border:1px solid #1f2a35;
+    color:#fff;
+}
+
+button {
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#4fd1ff;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    color:#000;
+}
+
+button:hover {
+    opacity:0.85;
+}
+
+.planBox {
+    text-align:center;
+    font-size:13px;
+    margin-bottom:15px;
+    color:#4fd1ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title">BLACK STEEL INNOVATIONS</div>
+    <div class="nav">
+        <a href="index.html">HOME</a>
+        <a href="fleet.html">FLEET</a>
+        <a href="pricing.html">PRICING</a>
+        <a href="contracts.html">CONTRACTS</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>ACCOUNT CREATION</h1>
+    <div class="sub">Initialize system access credentials</div>
+
+    <div class="planBox" id="planBox">Loading plan...</div>
+
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <input id="company" placeholder="Company / Organization Name">
+
+    <button onclick="createAccount()">CREATE ACCOUNT</button>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const app = initializeApp({
+    apiKey:"AIzaSyCbaJCjjzU9DdJFY28MXW3LYesDdYfzyqg",
+    authDomain:"black-steel-6a724.firebaseapp.com",
+    projectId:"black-steel-6a724"
+});
+
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// GET PLAN FROM URL
+const urlParams = new URLSearchParams(window.location.search);
+const plan = urlParams.get("plan") || "basic";
+
+document.getElementById("planBox").innerText = "Selected Plan: " + plan.toUpperCase();
+
+window.createAccount = async function() {
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const company = document.getElementById("company").value;
+
+    if(!email || !password) {
+        alert("Missing required fields");
+        return;
+    }
+
+    try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+        await setDoc(doc(db, "users", userCred.user.uid), {
+            email,
+            company,
+            plan,
+            created: Date.now(),
+            status: "pending_payment"
+        });
+
+        // NEXT STEP → payment
+        window.location.href = "payment.html?plan=" + plan;
+
+    } catch(err) {
+        alert(err.message);
+    }
+}
+</script>
+
+</body>
+</html>
