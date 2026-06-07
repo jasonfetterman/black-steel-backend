@@ -73,7 +73,10 @@ async function createCheckoutSession(productId, userId) {
     cancel_url: "https://black-steel-backend.onrender.com/"
   });
 
-  return session;
+  return {
+  url: session.url,
+  id: session.id
+};
 }
 
 module.exports = {
