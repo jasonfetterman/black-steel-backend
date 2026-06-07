@@ -1,52 +1,48 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const bodyParser = require("body-parser");
 
 const { createCheckoutSession } = require("./stripe");
-const { handleWebhook } = require("./webhook");
 
 const app = express();
 
-/* Stripe webhook MUST be raw */
-app.post(
-  "/api/webhook",
-  express.raw({ type: "application/json" }),
-  handleWebhook
-);
-
-/* normal middleware */
-app.use(cors({ origin: "*" }));
-app.use(express.json());
-
-/* health check */
-app.get("/", (req, res) => {
-  res.send("BLACK STEEL BACKEND LIVE");
+/* ---------------- GLOBAL ERROR SAFETY ---------------- */
+process.on("uncaughtException", (err) => {
+  console.error("🔥 UNCAUGHT EXCEPTION:", err);
 });
 
-/* checkout route */
+process.on("unhandledRejection", (err) => {
+  console.error("🔥 UNHANDLED REJECTION:", err);
+});
+
+/* ---------------- MIDDLEWARE ---------------- */
+app.use(cors());
+app.use(bodyParser.json());
+
+/* ---------------- ROUTES ---------------- */
+
 app.post("/api/create-checkout", async (req, res) => {
   try {
     console.log("BODY:", req.body);
 
-    const session = await createCheckoutSession(
-      req.body.productId,
-      req.body.userId
-    );
+    const { productId, userId } = req.body;
 
-    return res.json({
-      url: session.url
-    });
+    const session = await createCheckoutSession(productId, userId);
 
+    res.json(session);
   } catch (err) {
     console.error("CHECKOUT ERROR:", err);
-
-    return res.status(500).json({
-      error: err.message
-    });
+    res.status(500).json({ error: err.message });
   }
 });
 
-const PORT = process.env.PORT || 3000;
+/* ---------------- HEALTH CHECK ---------------- */
+app.get("/", (req, res) => {
+  res.send("BLACK STEEL BACKEND RUNNING");
+});
+
+/* ---------------- START SERVER ---------------- */
+const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
   console.log(`BLACK STEEL BACKEND RUNNING ON ${PORT}`);
