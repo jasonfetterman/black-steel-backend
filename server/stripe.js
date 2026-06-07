@@ -6,11 +6,14 @@ require("dotenv").config();
 
 const { getProduct } = require("./products");
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("Missing STRIPE_SECRET_KEY in .env file");
+if (!process.env.STRIPE_TEST_SECRET_KEY) {
+  throw new Error("Missing STRIPE_TEST_SECRET_KEY in environment variables");
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+/* DEBUG LOG (safe for troubleshooting) */
+console.log("STRIPE TEST KEY PREFIX:", process.env.STRIPE_TEST_SECRET_KEY?.slice(0, 8));
+
+const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY);
 
 const DB_PATH = path.join(__dirname, "../db.json");
 
@@ -74,9 +77,9 @@ async function createCheckoutSession(productId, userId) {
   });
 
   return {
-  url: session.url,
-  id: session.id
-};
+    url: session.url,
+    id: session.id
+  };
 }
 
 module.exports = {
